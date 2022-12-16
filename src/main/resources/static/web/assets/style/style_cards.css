@@ -1,0 +1,196 @@
+    .portadaCards{
+    background-image: url(../img/imagenHome3.jpg);
+    background-position:center;
+    background-size:cover;
+    background-repeat: no-repeat;
+    
+    min-height: 40vh;
+    
+}
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&family=Nunito&display=swap');
+:root{
+    font: size 24px;
+}
+/*
+.bodyCard{
+    background: #1488cc;
+    background:  linear-gradient(to left, #283,#1a3e53);
+    height: 100%;
+    font-family: "Josefin Sans", sans-serif;
+}
+.circle{
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(rgb(177, 76, 76) ,rgb(68, 68, 161));
+}
+.circles{
+    position: absolute;
+    height: 270px;
+    width: 450px;
+    top: 50%;
+    left: 50%;
+}
+.circle-1{
+    height: 180px;
+    width: 180px;
+    top: -50%;
+    left: -60px;
+}
+.circle-2{
+    height: 200px;
+    width: 200px;
+    bottom: -90px;
+    right: -90px;
+    opacity: 0.8;
+}
+.card-group{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.card{
+    position: relative;
+    height: 270px;
+    width: 450px;
+    border-radius: 25px;
+    background: rgb(225, 255, 225,0.2);
+    backdrop-filter: blur(30px);
+    border: 2px solid rgb(225, 255, 225,0.1);
+    box-shadow: 0 0 80px rgb(0, 0, 0,0.2);
+    overflow: hidden;
+}
+.logo img,
+.chip img,
+.number,
+.name,
+.portadaCards.ring{
+    position: absolute;
+}
+.logo img{
+    top: 35px;
+    right: 40px;
+    width: 80px;
+    height: auto;
+    opacity: 0.8;
+}
+.chip img{
+    top: 120px;
+    left: 40px;
+    width: 50px;
+    height: auto;
+    opacity: 0.8;
+}
+.number,
+.name,
+.from,
+.to{
+    color: rgb(225, 255, 225,0.8);
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-shadow: 0 0 2px rgb(0, 0, 0,0.6);
+}
+.number{
+    left: 40px;
+    bottom: 65px;
+    font-family: "Nunito",sans-serif;
+}
+.name{
+    font-size: .5 rem;
+    left: 40px;
+    bottom: 35px;
+}
+.from{
+    font-size: 0.5rem;
+    bottom: 35px;
+    right: 40px;
+}
+.to{
+    font-size: 0.5 rem;
+    bottom: 35px;
+    right: 40px;
+}
+.ring{
+    height: 500px;
+    width: 500px;
+    border-radius: 50%;
+    background: transparent rgb(225, 225, 225, 0.1);
+    bottom: -250px;
+    right: -250px;
+    box-sizing: border-box;
+}
+.ring::after{
+    content: "";
+    position: absolute;
+    height: 600px;
+    width: 600px;
+    border-radius: 50%;
+    background: transparent;
+    border: 30px solid rgb(225, 225, 225, 0.1);
+    bottom: -80px;
+    right: -110px;
+    box-sizing:border-box;
+
+}*/
+
+.solicitar-card{
+    font-size: 1rem;
+    font-weight: bold;
+    background-image: linear-gradient(to right top, #358d72, #328a6d, #2f8868, #2d8562, #2b825d, #2a8059, #297e54, #287c50, #287a4b, #287846, #287641, #28743c);
+    border: none;
+    color: rgb(255, 245, 245);
+}
+.colorTitanium{
+    background-color: rgb(196, 196, 196);
+
+}
+
+.colorSilver{
+    background-color: rgb(93, 120, 168);
+
+}
+
+.colorGold{
+    background:  linear-gradient(to left, #E4A222,#FFE262,#E79F19);
+    background-color: crimson;
+}
+
+.cardBank1{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    min-height: 288px;
+    max-width: 480px;
+    border-radius: 25px;
+    color: rgb(17, 17, 16);
+    font-family: "Josefin Sans", sans-serif;
+    box-shadow: 0 0 80px rgb(0, 0, 0,0.2);
+}
+.barraNegra_backCard{
+    margin-top: 1.3rem;
+    width: 100%;
+    height: 4.6rem;
+    background-color: black;
+}
+.barraOcultaCvv{
+    width: 57%;
+    height: 2rem;
+    background:  linear-gradient(to left, #a8a6a1,#7a745a,#5c4a29);}
+.cvv_cardBack{
+    padding-left: 0.8rem;
+    max-width: 17%;
+    height: 1.5rem;
+    color: black;
+    background-color: white;
+}
+.masterCTrasera{
+    padding-top: 3rem;
+}
+
+.fondoCreate{
+    background:  linear-gradient(45deg,#DBFDEC,#FFC2D4);
+    border: none;
+    margin: 5rem;
+    padding: 2rem 5rem 2rem 5rem;
+    border-radius: 0.9rem;
+}

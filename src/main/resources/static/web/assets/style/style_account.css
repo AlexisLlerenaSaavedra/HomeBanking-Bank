@@ -1,0 +1,75 @@
+
+  
+ 
+  
+  
+  .titulo{
+      background: linear-gradient(-45deg, #2a2a2c 0%, #595864 13%, #45414d 25%, #54495e 38%, #997396 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%);;
+          background-size: 400% 400%;
+          
+          animation: animate 3.5s ease-in-out infinite;
+          padding: 0 1rem 0 1rem;
+          border-radius: 0 1rem 0 1rem;
+  }
+  .contenedor-nav{
+      background-color: white;   
+      min-height: 7vh;
+  }
+  .container-header{
+      background-image: url(./img/encabezado.jpg);
+      background-position:center;
+      background-size:cover;
+      background-repeat: no-repeat;
+      
+      min-height: 40vh;
+      
+  }
+  .container-main{
+      min-height: 80vh;
+      
+          
+      background: linear-gradient(-45deg, #23c95a 0%, #32ad74 13%, #285745 25%, #3d6d6a 38%, #815a7e 50%, #15b96d 62%, #cef16c 75%, #f3a469 87%, #f7c978 100%);
+      background-size: 400% 400%;
+      
+      animation: animate 7.5s ease-in-out infinite;
+          
+    
+          
+  }
+  .background-red{
+    background-color: red;
+  }
+  .background-green{
+    background-color: green;
+  }
+  
+  @keyframes animate{
+      0%{
+        background-position: 0 50%;
+      }
+      50%{
+        background-position: 100% 50%;
+      }
+      100%{
+        background-position: 0 50%;
+      }
+    }
+    .container-header-home{
+      background-image: url(./img/encabezadoHome.jpg);
+      background-position:center;
+      background-size:cover;
+      background-repeat: no-repeat;
+      
+      min-height: 40vh;
+      
+  }
+  .tituloT{
+      background: linear-gradient(-45deg, #2a2a2c 0%, #595864 13%, #45414d 25%, #54495e 38%, #997396 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%);;
+          background-size: 400% 400%;
+          
+          animation: animate 10.5s ease-in-out infinite;
+          padding: 0 1rem 0 1rem;
+          border-radius: 0 1rem 0 1rem;
+  
+  }
+  

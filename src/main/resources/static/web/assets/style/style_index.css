@@ -1,0 +1,35 @@
+.img_index{
+    background-image: url(../img/imagenHome2.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    
+}
+.bg-login{
+    background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+
+    border: none; 
+
+    /*background: linear-gradient(-45deg, #996f96 0%, #559262 13%, #285745 25%, #3d6d6a 38%, #815a7e 50%, #593d64 62%, #6dbb6a 75%, #7da56a 87%, #e2ac4f 100%);
+        background: linear-gradient(#d43889,#602d80,#342a9e);   
+
+
+    background-size: 400% 400%;
+    
+    animation: animate 20.5s ease-in-out infinite;*/
+}
+.img_index2{
+    background-image: url(../img/imagenHome.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.fondo-index{
+    background: linear-gradient(#c3c3c9,#bfabd3,#d49f9f);    
+    
+}
+.fondo-index-index-create{
+    background: linear-gradient(#d49f9f,#bfabd3,#c3c3c9);    
+
+}

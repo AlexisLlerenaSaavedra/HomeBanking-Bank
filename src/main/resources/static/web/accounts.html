@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/style/style.css">
+    <link rel="stylesheet" href="./assets/style/style_accounts.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <title>Tus Cuentas</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container-header d-flex align-items-center ">
+            <div class="container d-flex justify-content-center align-items-center portada">
+                <h1 class="text-white fs-6 titulo p-3">YOUR BANK </h1>
+            </div>
+
+        </div>
+        <div class="container bg-white">
+            <nav class="navbar navbar-expand-lg ">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#"><i class="fa-solid fa-building-columns me-4"></i>ACCOUNT</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link " aria-current="page" href="./home.html">HOME</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">ACCOUNT</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./cards.html">MY CARDS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./transfers.html">TRANSFER</a>
+                            </li>
+
+
+                        </ul>
+                        
+                        <button class="nav-link  btn boton-salir text-white pt-2 pb-2 ps-3 pe-3 fw-semibold " aria-current="page" v-on:click="cerrarSesion">LOGOUT</button>
+                        
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="container-main" style="min-height: 56vh;">
+            <div v-if="primeraPantallaAccount"
+                class="container pt-5 pb-5 gap-4 d-flex justify-content-center flex-wrap ">
+                <button @:click="createAccount" v-if="cuentas.length<3" type="button" class="btn boton-create w-100">Create new account </button>
+
+                <div class="card w-100-md color-card-account" style="width: 28rem;">
+                    <div class="card-body ">
+                        <h5 class="card-title text-center mb-3 "><i class="fa-solid fa-wallet"></i> YOUR BANK
+                        </h5>
+                        <div class="primera_card" >
+                            <h6 class="card-subtitle mb-3 text-black">Total Available Balance</h6>
+                            <h6 class="card-subtitle mb-3 text-black ">${{saldoTotal()}}</h6>
+                        </div>
+                        <div class="primera_card pt-3 pb-2 mb-2 ">
+                            <h6 v-if="loans.length>0" class="card-subtitle mb-3 text-muted" @:click="mostrarTemplateAccountTercero" >Mis Prestamos</h6>
+                            <h6 v-else class="card-subtitle mb-3 text-black" @:click="redigidirAPrestamos">Solicitar un prestamo </h6>
+
+                            
+                        </div>
+                        <div class="d-flex justify-content-between gap-3 ">
+                            <button type="button" class="btn btn-metodos-dinero ">Ingresar dinero</button>
+                            <a href="./transfers.html" type="button" class="btn  btn-metodos-dinero ">Transferir dinero</a>
+                        </div>
+                        
+
+                    </div>
+                </div>
+                
+                <div v-for="cuenta of cuentas">
+                    <div class="card color-card-account" style="width: 16rem;">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fa-regular fa-star"></i> Account {{cuenta.id}}
+                            </h5>
+                            <h6 class="card-subtitle mb-2 text-muted">${{cuenta.balance}}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Available Balance</h6>
+                            <div class="d-flex justify-content-between">
+                                <p class="card-text">Account </p>
+                                <span>{{cuenta.number}}</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <p class="card-text">Creation Date</p>
+                                <span>{{modificarFecha(cuenta.creationDate)}}</span>
+                            </div>
+                            <a :href="'./account.html?id='+ cuenta.id" class="btn btn-metodos-dinero2 ">Log in to My Account</a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card w-100" style="width: 28rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"><img src="./assets/img/tarjetaCredidoIcon.svg" style="width: 25px;"
+                                alt=""> Recent transactions</h5>
+                        <div class="d-flex flex-column gap-3" v-for="transaction of arrayTransacciones">
+                            <div class="d-flex justify-content-between">{{transaction.description}}
+                                <div class="d-flex">
+                                    <span class="titulo me-2">14
+                                        OCT</span>
+                                    <div class="card-text">Amazon Online Putchase</div>
+                                </div>
+                                <span style="margin-left: 1rem;">$6,633.55</span>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+                <button @:click="mostrarTemplateAccount" class="btn btn-dark">See customer detail</button>
+
+            </div>
+            <template v-if="segundaPantallaAccount">
+                <div class=" w-100 container pt-4 pb-4" >
+                    <div class="d-flex justify-content-star">
+                        <button @:click="atrasAccount" class="btn mb-4 boton-salir">Back</button>
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                    <div class="card card-info-client" style="width: 28rem;">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold mb-4"><i class="fa-solid fa-user"></i>
+                                Your personal information
+                            </h5>
+                            
+                            <div class="d-flex justify-content-between">
+                                <p class="card-text">First Name: </p>
+                                <span>{{datos.firstName}}</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p class="card-text">LastName: </p>
+                                <span>{{datos.lastName}}</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p class="card-text">Email: </p>
+                                <span>{{datos.email}}</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </template>
+            <template v-if="terceraPantallaAccount">
+                <div class=" w-100 container pt-4 pb-4">
+                    <div class="d-flex justify-content-star">
+                        <button @:click="atrasAccount" class="btn boton-salir mb-4 ">Back</button>
+                    </div>
+
+                    <div class="d-flex justify-content-evenly flex-wrap gap-3">
+                        <div v-for="loan of loans" class="card d-flex  flex-column flex-sm-row " style="width: 28rem;">
+                            <div class="w-100 ps-4 pe-4 pt-3 pb-3">
+                                <h5 class="text-center">Total a pagar</h5>
+                                <h5 class=" fw-bold mb-4 text-center"><i class="fa-solid fa-user"></i>
+                                    ${{loan.amount}}
+                                </h5>
+                                <div class="d-flex flex-column  gap-3 ">
+                                    <button type="button" class="btn btn-primary w-100">Pagar Todo</button>
+                                    <button type="button" class="btn btn-primary w-100">Elegir cuotas a pagar</button>
+                                </div>
+                            
+                            </div>
+                            <div class=" d-flex flex-column justify-content-center align-items-center container">
+                                <h5 class="text-center">Prestamo</h5>
+                                <h5 class="text-center">{{loan.name}}</h5>
+                                <h6>Pagos</h6>
+                                <p class="color-black">{{loan.payments}}/Cuotas</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </template>
+        </div>
+
+
+
+    </div>
+    
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>    
+        <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+
+    <script src="./accounts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"
+        integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    
+
+
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+.fondoCreate{
+    background:  linear-gradient(45deg,#DBFDEC,#FFC2D4);
+    border: none;
+    margin: 5rem;
+    padding: 2rem 5rem 2rem 5rem;
+    border-radius: 0.9rem;
+}
+.btn-outline-succ{
+    background-image: linear-gradient(to right top, #19838b, #21858c, #27868d, #2d888f, #328a90, #31898f, #31888e, #30878d, #298389, #207f86, #167b82, #07777f);    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    color: rgb(255, 245, 245);
+    
+}
+
+.btn-outline-personalizable {
+    --bs-btn-color: #191a19;
+    --bs-btn-border-color: #0c0c0b;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #af1414;
+    --bs-btn-hover-border-color: #360e20;
+    --bs-btn-focus-shadow-rgb: 25,135,84;
+    --bs-btn-active-color: rgb(46, 45, 45);
+    --bs-btn-active-bg: #c7169bef;
+    --bs-btn-active-border-color: #332c2e;
+    --bs-btn-active-shadow: inset 0 3px 5pxrgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #cb10a5;
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: #d5175e;
+    --bs-gradient: none;
+    font-size: 1.2rem;
+    font-weight: 400;
+    font-weight: 500;
+    
+    
+}
+.letra-create{
+    font-weight: 600;
+}

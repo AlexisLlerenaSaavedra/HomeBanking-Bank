@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/style/style.css">
+    <link rel="stylesheet" href="./assets/style/style_cards.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <title>Tus Cuentas</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="portadaCards d-flex align-items-center ">
+            <div class="container d-flex justify-content-center align-items-center portadaCards">
+                <h1 class="text-white fs-6 titulo p-3">YOUR BANK</h1>
+            </div>
+
+        </div>
+        <div class="container bg-white">
+            <nav class="navbar navbar-expand-lg ">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#"><i class="fa-solid fa-building-columns me-4"></i>MY CARDS</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link " aria-current="page" href="./home.html">HOME</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./accounts.html">ACCOUNT</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">MY CARDS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./transfers.html">TRANSFER</a>
+                            </li>
+
+
+                        </ul>
+                        <button class="nav-link  btn btn-danger text-white pt-2 pb-2 ps-3 pe-3 fw-semibold " aria-current="page" v-on:click="cerrarSesion">LOGOUT</button>
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+        
+        <div class="container-main" >
+            <div class="pt-4 pb-4">
+                <button v-if="cardsCredito.length + cardsDebito.length<6"  type="button" class="btn btn-success ms-3" >
+                    <a class="btn solicitar-card" href="./create-cards.html">Request your card</a> </button>
+                <div v-if="pantallaPrincipal" class="container" >
+                <h2 class="p-4 text-center bg-light mt-4">Cards Credito</h2>
+                <div v-if="cardsCredito.length" class=" d-flex justify-content-center mt-4 mb-4 " v-for="cardCredi of cardsCredito" >
+                    
+                    <div class="fondoCreate d-flex flex-row justify-content-star align-items-center gap-4 p-2 rounded-1 " style="width: 48rem; min-height: 10rem;" :value="cardCredi.cardActive">
+                        <img src="./assets/img/mastercard.svg" class="rounded-circle border border-2 p-2" style="width: 5rem;" alt="...">
+                        <div class="d-flex flex-column flex-grow-1">
+                            <h5>Terminada en 3836</h5>
+                            <p>Tarjeta {{cardCredi.color}}</p>
+                            <p>Vencimiento: {{cardCredi.thruDate}}</p>
+
+                        </div>
+                        <button type="button" class="btn btn-dark align-self-stretch"  @:click="eliminarCard">Eliminar</button>
+                        <button type="button" class="btn btn-dark align-self-stretch" :value="cardCredi.color+cardCredi.type" v-on:click="mostrarColorCardCredi($event)">Mostrar</button>
+                    
+                </div>
+                    
+                    
+                </div>
+                <h2 v-else>No dispones de tarjetas de Credito por el momento </h2>
+                <div>
+                    <h2 class="p-4 text-center bg-light mt-4">Cards Debito</h2>
+                    <div v-if="cardsDebito.length" class=" d-flex justify-content-center mt-4 mb-4" v-for="cardDebi of cardsDebito">
+                    <div class="fondoCreate d-flex flex-row align-items-center gap-4 p-2 rounded-1 " style="width: 48rem; min-height: 10rem;" >
+                            <img src="./assets/img/mastercard.svg" class="rounded-circle border border-2 p-2" style="width: 5rem;" alt="...">
+                            <div class="d-flex flex-column flex-grow-1">
+                                <h5>Terminada en 3836</h5>
+                                <p>Tarjeta {{cardDebi.color}}</p>
+                                <p>Vencimiento: {{cardDebi.thruDate}}</p>
+    
+                            </div>
+                            <button type="button" class="btn btn-dark align-self-stretch" :value="cardDebi.color +cardDebi.type"   v-on:click="mostrarColorCardDebi($event)">Mostrar</button>
+                        </div>
+                        
+                        
+                    </div>
+                    <h2 v-else>No dispones de tarjetas de Debito por el momento </h2>
+
+                </div>
+                </div>
+                <template v-if="templateDebito" >
+                    <button @:click="atrasCards" class="btn btn-danger mb-4">Back</button>
+                    <div v-for="cardDebi of cardSelect" >
+                    <div class="cardBank " v-bind:class="colorCard">
+                        <h1 class="Titulo_cardB">YouBank</h1>
+                        <img class="chip_cardB" src="./assets/img/chip.png" style="width: 4rem;" alt="">
+                        <img class="conect_cardB" src="./assets/img/contactless.png" style="width: 4rem;" alt="">
+                        <h5 class="numero_cardB">{{cardDebi.number}}</h5>
+                        <h6 class="nombre_cardB">{{cardDebi.cardHolder}}</h6>
+                        
+                        <h6 class="fechaIni_cardB">{{cardDebi.fromDate}}</h6>
+                        <p class="p_cardB">HASTA</p>
+                        <h6 class="fechaExp_cardB">{{cardDebi.thruDate}}</h6>
+
+                        
+                        
+                        <img class="masterC_cardB" src="./assets/img/mastercard.svg" style="width: 6rem;" alt="">
+
+                    </div>
+                    
+                    <div class="cardBank" v-bind:class="colorCard">
+                        <div class="barraNegra_backCard"></div>
+                        <div class="barraOcultaCvv"></div>
+                        <div class="cvv_cardBack">{{cardDebi.cvv}}</div>
+                        
+                        <img class="masterC_cardB" src="./assets/img/mastercard.svg" style="width: 6rem;" alt="">
+
+                    </div>
+                    </div>
+
+                </template>
+                <template v-if="templateCredito">
+                    <button @:click="atrasCards" class="btn btn-danger mt-2 ms-4 pt-3 pb-3 ps-4 pe-4 mb-4">Back</button>
+                    <div v-for="cardCredi of cardSelect" class="d-flex justify-content-center flex-wrap gap-4 ">
+                    
+                    <div class="cardBank1 w-100 mb-4 pt-4 pb-1 ps-3 " v-bind:class="colorCard">
+                        <h1 class="ps-2 w-100 text-light fs-1">YouBank</h1>
+                        <div class="d-flex justify-content-between mt-1 mb-2">
+                            <img class="ms-2" src="./assets/img/chip.png" style="width: 4rem;" alt="">
+                            <img class="me-4" src="./assets/img/contactless.png" style="width: 4rem;" alt="">
+
+                        </div>
+                        
+                        <h5 class=" text-center fw-bolder fs-3 ">{{cardCredi.number}}</h5>
+                        <div class="d-flex justify-content-end align-items-center gap-3 pe-5">
+                            <h6 >{{cardCredi.fromDate}}</h6>
+                            <p class=" pt-2">HASTA</p>
+                            <h6>{{cardCredi.thruDate}}</h6>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-end ">
+                            <h6 class="pb-3 ps-4 fw-semibold">{{cardCredi.cardHolder}}</h6>
+                            <img src="./assets/img/mastercard.svg" style="width: 6rem;" alt="">
+                        </div>
+                        
+
+                    </div>
+                    <div class="cardBank1 w-100 mb-4 pt-4 pb-1  " v-bind:class="colorCard">
+                        
+                        <div class="barraNegra_backCard mb-4">
+                        </div>
+                        <div class="d-flex align-items-center ms-2">
+                            <div class="barraOcultaCvv">
+                            </div>
+                            <div class="cvv_cardBack">{{cardCredi.cvv}}
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <img class="masterCTrasera flex-fill" src="./assets/img/mastercard.svg" style="width: 6rem;" alt="">
+                        </div>
+                    </div>
+
+                    </div>
+
+                </template>
+                
+
+
+            </div>
+        </div>
+        
+           
+
+
+
+    </div>
+    
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>    
+        <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+
+    <script src="./cards.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"
+        integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    
+
+
+</body>
+
+</html>

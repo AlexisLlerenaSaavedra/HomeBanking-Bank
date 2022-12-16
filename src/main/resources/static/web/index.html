@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./assets/style/style.css">
+  <link rel="stylesheet" href="./assets/style/style_index.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <title>Index</title>
+</head>
+
+<body>
+  <div id="app">
+
+    <div class="d-flex flex-wrap" v-if="pantallaSesion">
+      <div class="img_index flex-grow-1 justify-content-center align-items-center d-flex" style="height: 100vh;">
+
+        <h2 class="pt-1 ps-2 pe-2 pb-1 bg-login text-light "style="border-radius: 1rem;">YouBank</h2>
+        <h5 class="p-1 btn-outline-light">Wellcome to ENTER!</h5>
+        
+
+
+
+
+
+
+
+
+      </div>
+      <div class="fondo-index flex-grow-1 d-flex justify-content-center align-items-center " style="height: 100vh;">
+
+        <section class=" gradient-custom ">
+          
+                <div class="card bg-login text-white" style="border-radius: 1rem;">
+                  <div class="card-body p-5 text-center">
+        
+                    <div >
+        
+                      <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                      <p class="text-white-50 mb-5">Please enter your login and password!</p>
+        
+                      <div class="form-outline form-white mb-4">
+                        <input type="email" id="typeEmailX" class="form-control form-control-lg" v-model="email" />
+                        <label class="form-label" for="typeEmailX">Email</label>
+                      </div>
+        
+                      <div class="form-outline form-white mb-4">
+                        <input type="password" id="typePasswordX" class="form-control form-control-lg" v-model="password" />
+                        <label class="form-label" for="typePasswordX">Password</label>
+                      </div>
+        
+                      <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
+                      <div v-if="alertCuentaExite" class="alert alert-danger" role="alert">
+                        You already have an account
+                      </div>
+                      <button class="btn btn-outline-light btn-lg px-5" v-on:click="iniciarSesion">Login</button>
+        
+                      <div class="d-flex justify-content-center text-center mt-4 pt-1">
+                        <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
+                        <a href="#!" class="text-white"><i class="fab fa-google fa-lg"></i></a>
+                      </div>
+        
+                    </div>
+        
+                    <div >
+                      <p class="mb-0" >Don't have an account? <a v-on:click="registrar" href="#!" class="text-white-50 fw-bold" >Sign Up</a>
+                      </p>
+                    </div>
+        
+                  </div>
+                </div>
+              
+        </section>
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+
+
+
+    </div>
+    <div v-if="pantallaRegistro" class="d-flex flex-wrap">
+      <div class="img_index2 flex-grow-1 justify-content-center align-items-center d-flex" style="min-height: 100vh;">
+
+        <h2 class="pt-1 ps-2 pe-2 pb-1 bg-login text-light "style="border-radius: 1rem;">YouBank</h2>
+        <h5 class="p-1 btn-outline-light">Wellcome to ENTER!</h5>
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="fondo-index-index-create flex-grow-1 d-flex justify-content-center align-items-center pt-2 pb-2 " style="min-height: 100vh;">
+
+        <section class=" gradient-custom ">
+          
+                <div class="card bg-login text-white" style="border-radius: 1rem;">
+                  <div class="card-body p-5  text-center">
+        
+                    <div >
+        
+                      <h2 class="fw-bold mb-2 text-uppercase">Sign Up</h2>
+                      <p class="text-white-50 mb-5">Please enter your login and password!</p>
+                      <div class="d-flex gap-3">
+                      <div class="form-outline form-white mb-4">
+                        <input type="email" id="typeEmailX" class="form-control form-control" v-model="firstName" />
+                        <label class="form-label" for="typeEmailX">First Name</label>
+                      </div>
+
+                      <div class="form-outline form-white mb-4">
+                        <input type="email" id="typeEmailX" class="form-control form-control" v-model="lastName" />
+                        <label class="form-label" for="typeEmailX">Last Name</label>
+                      </div>
+                    </div>
+        
+                      <div class="form-outline form-white mb-4">
+                        <input type="email" id="typeEmailX" class="form-control form-control" v-model="emailCreate" />
+                        <label class="form-label" for="typeEmailX">Email</label>
+                      </div>
+        
+                      <div class="form-outline form-white mb-4">
+                        <input type="password" id="typePasswordX" class="form-control form-control" v-model="passwordCreate" />
+                        <label class="form-label" for="typePasswordX">Password</label>
+                      </div>
+                
+                      <button class="btn btn-outline-light btn-lg px-5" v-on:click="crearUsuario">Create</button>
+        
+                      <div class="d-flex justify-content-center text-center mt-4 pt-1">
+                        <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
+                        <a href="#!" class="text-white"><i class="fab fa-google fa-lg"></i></a>
+                      </div>
+        
+                    </div>
+        
+                    <div>
+                      <p class="mb-0">If you have an account? <a href="./index.html" class="text-white-50 fw-bold"> Enter</a>
+                      </p>
+                    </div>
+        
+                  </div>
+                </div>
+              
+        </section>
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+
+
+
+    </div>
+    
+     
+    
+
+    
+    
+   
+
+
+
+  </div>
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+  <script src="./index.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"
+    integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+
+
+</body>
+
+</html>
+
+
+

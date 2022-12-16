@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/style/style.css">
+    <link rel="stylesheet" href="./assets/style/style_transfers.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <title>Tus Cuentas</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container-header d-flex align-items-center ">
+            <div class="container d-flex justify-content-center align-items-center portada">
+                <h1 class="text-white fs-6 titulo p-3">YOUR BANK </h1>
+            </div>
+
+        </div>
+        <div class="container bg-white ">
+            <nav class="navbar navbar-expand-lg ">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#"><i class="fa-solid fa-building-columns me-4"></i>TRANSFER</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link " aria-current="page" href="./home.html">HOME</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./accounts.html">ACCOUNT</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./cards.html">MY CARDS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">TRANSFER</a>
+                            </li>
+
+
+                        </ul>
+                        
+                        <button class="nav-link  btn btn-danger text-white pt-2 pb-2 ps-3 pe-3 fw-semibold " aria-current="page" v-on:click="cerrarSesion">LOGOUT</button>
+                        
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="container-main ">
+
+            <div  v-if="templateSelectAccount" class="container" >
+            <h2 class="w-100 text-center mb-4 pt-4 mt-4" >Elegir la cuenta con la que desea hacer la transferencia</h2>
+            <div class="d-flex  justify-content-evenly flex-wrap gap-4">
+            <div v-for="cuenta of cuentas" class="pb-5">
+                <div class="card card-color-transfer" style="width: 16rem; min-height: 15rem;">
+                    <div class="card-body">
+                        <h5 class="card-title mt-4 mb-4"><i class="fa-regular fa-star"></i> Account {{cuenta.number}}
+                        </h5>
+                        <h6 class="card-subtitle mb-2 text-muted">${{cuenta.balance}}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Available Balance </h6>
+                        <div class="d-flex justify-content-between">
+                            <p class="card-text">Account </p>
+                            <span>{{cuenta.number}}</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <p class="card-text">Creation Date</p>
+                            <span>{{modificarFecha(cuenta.creationDate)}}</span>
+                        </div>
+                        <button class="btn btn-success btn-color " :value="cuenta.number" v-on:click="selectCuenta($event)" >Select</button>
+                            
+                        
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div v-if="templateTransfer " class="d-flex justify-content-center pt-5 pb-5 container ">
+            <div class="card " style="width: 46rem; min-height:26rem; ">
+                <div class="card-body">
+                    
+                    <h2>Saldo Total</h2>
+                    <h1 class="card-subtitle mb-2 text-muted">${{cuentaSeleccionada.balance}}</h1>
+                    <h6 class="card-subtitle mb-2 text-muted">Account {{cuentaSeleccionada.number}}</h6>
+                    <h4 class="text-center mt-4 mb-4">¿Cuenta a la que desea transferir?</h4>
+                    <div class="d-flex gap-4 justify-content-center flex-wrap align-items-center">
+                        <input type="radio" class="btn-check" id="iCuentaPropia" autocomplete="off" name="selectCuenta" value="cuentaPropia" v-model="cuentaSele">
+                        <label class="btn btn-outline-primary" for="iCuentaPropia">Cuenta propia</label><br>
+
+                        <input type="radio" class="btn-check" id="iCuentaTercero" autocomplete="off" name="selectCuenta" value="cuentaTercero" v-model="cuentaSele">
+                        <label class="btn btn-outline-primary" for="iCuentaTercero">Cuenta a terceros</label><br>{{seleccionarCuentaEnviar}}
+
+                    </div>
+                    
+                    <div v-if="misCuentas" class="input-group mb-3">
+                        <select v-model="numeroDeCuenta" class="mt-4 form-select form-select-lg mb-3" aria-label=".form-select-lg example" >
+                            <option selected>Seleccione la cuenta</option>
+                            <template v-for="cuenta in cuentas">
+                            <option v-if="cuenta.number!=cuentaSeleccionada.number"  v-on:click="numeroDeCuentaDestinataria($event)" >{{cuenta.number}}</option>
+                            </template>
+                        </select>
+                       
+                    </div>
+                    <div v-if="cuentasTerceros">
+                        <h3 class="mt-4 mb-4">Ingresar el numero de cuenta</h3>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-default" v-model="numeroCuentaDestino">N°Cuenta {{numeroCuentaDestino}}</span>
+                            <input v-model="numeroDeCuenta" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">{{numeroDeCuenta}}
+                          </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">$</span>
+                        <input type="number" v-model="montoEnviar" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">{{montoEnviar}}
+                    </div>
+                    <div class="input-group flex-nowrap ">
+                        <input type="text" v-model="textTrasfer" class="form-control" placeholder="Mensaje" aria-label="Mensaje" aria-describedby="addon-wrapping">{{textTrasfer}}
+                    </div>
+                    <div class="ms-5 mt-4 d-flex justify-content-center">
+                    <button class="btn btn-success btn-color "  v-on:click="realizarTrasferencia" >Transferir</button>
+                    </div>
+    
+                </div>
+            </div>
+
+        </div>
+        </div>
+
+
+
+    </div>
+    
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>    
+        <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="./transfer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"
+        integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    
+
+
+</body>
+
+</html>

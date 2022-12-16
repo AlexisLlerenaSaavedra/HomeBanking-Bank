@@ -1,0 +1,77 @@
+
+
+.primera_card:hover{
+    
+    cursor: pointer;
+    border-radius: 0.6rem;
+    background: linear-gradient(45deg,#D0F56B,#5876FB);;
+        background-size: 400% 400%;
+        border: none;
+        animation: animate 3.5s ease-in-out infinite;
+        padding: 0 1rem 0 1rem;
+        border-radius: 0 1rem 0 1rem;
+        
+        transition:all 0.9s;
+        
+        
+
+}
+.btn-color{
+    background-color: #419681;
+   border: none;
+   transition: all 0.9s;
+}
+.boton-create{
+    /*background:  linear-gradient(45deg,#95FD48,#19E9A6);*/
+    color: rgb(70, 58, 58);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(45deg,#6FE594,#27A47C) ;;
+        background-size: 400% 400%;
+        border: none;
+        animation: animate 3.5s ease-in-out infinite;
+        transition:all 0.9s;
+}
+.boton-create:hover{
+    background-image: linear-gradient(45deg,#6FE594,#27A47C);
+    animation: animate 20.5s ease-in-out infinite;
+
+}
+
+
+.color-card-account{
+    background:  linear-gradient(45deg,#DBFDEC,#FFC2D4);
+    border: none;}
+
+.boton-salir{
+    background:  linear-gradient(45deg,#be0303b2,#FD7153);
+    border: none;
+    font-weight:600;
+    color: white;
+}
+.btn-metodos-dinero{
+    font-size: 1rem;
+    font-weight: bold;
+    background-image: linear-gradient(to right top, #358d72, #328a6d, #2f8868, #2d8562, #2b825d, #2a8059, #297e54, #287c50, #287a4b, #287846, #287641, #28743c);
+    border: none;
+    color: rgb(255, 245, 245);
+}
+.btn-metodos-dinero2{
+    background-image: linear-gradient(to right top, #19838b, #21858c, #27868d, #2d888f, #328a90, #31898f, #31888e, #30878d, #298389, #207f86, #167b82, #07777f);    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    color: rgb(255, 245, 245);
+}
+
+.card-info-client{
+    background: linear-gradient(-45deg, #2a2a2c 0%, #595864 13%, #45414d 25%, #54495e 38%, #997396 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%);;
+        background-size: 400% 400%;
+        font-size: 1rem;
+    font-weight: bold;
+        animation: animate 3.5s ease-in-out infinite;
+        padding: 0 1rem 0 1rem;
+        border-radius: 0 1rem 0 1rem;
+        color: rgb(255, 245, 245);
+
+}

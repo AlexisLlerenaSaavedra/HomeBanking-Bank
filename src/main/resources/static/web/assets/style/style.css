@@ -1,0 +1,86 @@
+.h1-color{
+  background-image: linear-gradient(to left bottom, #1a4e17, #003f32, #002d37, #0b1a25, #070707);}
+
+.boton-salir{
+    background:  linear-gradient(45deg,#be0303b2,#FD7153);
+    border: none;
+}
+
+.titulo{
+    background: linear-gradient(-45deg, #2a2a2c 0%, #595864 13%, #45414d 25%, #54495e 38%, #997396 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%);;
+        background-size: 400% 400%;
+        
+        animation: animate 3.5s ease-in-out infinite;
+        padding: 0 1rem 0 1rem;
+        border-radius: 0 1rem 0 1rem;
+}
+.contenedor-nav{
+    background-color: white;   
+    min-height: 7vh;
+}   
+.container-header{
+    background-image: url(../img/encabezado.jpg);
+    background-position:center;
+    background-size:cover;
+    background-repeat: no-repeat;
+    
+    min-height: 40vh;
+    
+}
+.container-main{
+  background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+  
+  /*  
+  background: linear-gradient(#9e9ee9, #f3a469);  
+  background: linear-gradient(-45deg, #996f96 0%, #559262 13%, #285745 25%, #3d6d6a 38%, #815a7e 50%, #593d64 62%, #6dbb6a 75%, #7da56a 87%, #e2ac4f 100%);
+  background-size: 400% 400%;
+  
+  animation: animate 20.5s ease-in-out infinite;*/
+}
+        
+.background-red{
+  background-color: red;
+}
+.background-green{
+  background-color: green;
+}
+
+@keyframes animate{
+    0%{
+      background-position: 0 50%;
+    }
+    50%{
+      background-position: 100% 50%;
+    }
+    100%{
+      background-position: 0 50%;
+    }
+  }
+  .container-header-home{
+    background-image: url(../img/encabezadoHome.jpg);
+    background-position:center;
+    background-size:cover;
+    background-repeat: no-repeat;
+    
+    min-height: 40vh;
+    
+}
+.tituloT{
+    background: linear-gradient(-45deg, #2a2a2c 0%, #595864 13%, #45414d 25%, #54495e 38%, #997396 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%);;
+        background-size: 400% 400%;
+        
+        animation: animate 10.5s ease-in-out infinite;
+        padding: 0 1rem 0 1rem;
+        border-radius: 0 1rem 0 1rem;
+
+}
+.carta-silver{
+  border: none;
+  background-image: linear-gradient(to left bottom, #2e5155, #336971, #36828f, #379caf, #37b6d1);}
+.carta-titanium{
+  border: none;
+  background-image: linear-gradient(to left bottom, #2e5155, #556b74, #7c8790, #a2a4aa, #c4c4c4);
+}
+.carta-gold{
+  border: none;
+  background-image: linear-gradient(to left bottom, #fde810, #dfc62d, #bfa639, #9e8740, #7c6b43);}
